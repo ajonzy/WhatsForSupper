@@ -24,7 +24,7 @@ export default function FriendForm(props) {
         else {
             setLoading(true)
 
-            fetch("https://whatsforsupperapi.vercel.app/user/friend/request", {
+            fetch("https://whatsforsupperapi.herokuapp.com/user/friend/request", {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

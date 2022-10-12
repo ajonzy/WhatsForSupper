@@ -25,7 +25,7 @@ export default function Settings(props) {
     const [allowNonfriendSharing, setAllowNonfriendSharing] = useState(user.settings.allow_nonfriend_sharing)
 
     const handleSettingsChange = (setting, newValue) => {
-        fetch(`https://whatsforsupperapi.vercel.app/settings/update/${user.settings.id}`, { 
+        fetch(`https://whatsforsupperapi.herokuapp.com/settings/update/${user.settings.id}`, { 
             method: "PUT",
             headers: { 
                 authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -66,7 +66,7 @@ export default function Settings(props) {
     }
 
     const handleLogoutAll = () => {
-        fetch(`https://whatsforsupperapi.vercel.app/user/logout/all/${user.id}`, { 
+        fetch(`https://whatsforsupperapi.herokuapp.com/user/logout/all/${user.id}`, { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
         })

@@ -22,7 +22,7 @@ export default function FriendRequests(props) {
     }
 
     const handleOutgoingDelete = friendRequest => {
-        fetch(`https://whatsforsupperapi.vercel.app/user/friend/cancel/${user.id}/${friendRequest.user_id}`, { 
+        fetch(`https://whatsforsupperapi.herokuapp.com/user/friend/cancel/${user.id}/${friendRequest.user_id}`, { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
         })
@@ -44,7 +44,7 @@ export default function FriendRequests(props) {
     }
 
     const handleIncomingDelete = friendRequest => {
-        fetch(`https://whatsforsupperapi.vercel.app/user/friend/reject/${user.id}/${friendRequest.user_id}`, { 
+        fetch(`https://whatsforsupperapi.herokuapp.com/user/friend/reject/${user.id}/${friendRequest.user_id}`, { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
         })
@@ -66,7 +66,7 @@ export default function FriendRequests(props) {
     }
 
     const handleAccept = friendRequest => {
-        fetch(`https://whatsforsupperapi.vercel.app/user/friend/accept/${user.id}/${friendRequest.user_id}`, { 
+        fetch(`https://whatsforsupperapi.herokuapp.com/user/friend/accept/${user.id}/${friendRequest.user_id}`, { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") } 
         })

@@ -23,7 +23,7 @@ export default function CategoryForm(props) {
         else {
             setLoading(true)
 
-            fetch("https://whatsforsupperapi.vercel.app/category/add", {
+            fetch("https://whatsforsupperapi.herokuapp.com/category/add", {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

@@ -128,7 +128,7 @@ export default function MealplanForm(props) {
                 return multipliers
             }
 
-            let responseData = await fetch("https://whatsforsupperapi.vercel.app/mealplan/add", {
+            let responseData = await fetch("https://whatsforsupperapi.herokuapp.com/mealplan/add", {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -171,7 +171,7 @@ export default function MealplanForm(props) {
             }
 
             for (let rule of data.rules) {
-                responseData = await fetch("https://whatsforsupperapi.vercel.app/rule/add", {
+                responseData = await fetch("https://whatsforsupperapi.herokuapp.com/rule/add", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -230,7 +230,7 @@ export default function MealplanForm(props) {
             let newData = {...props.data}
             if (newMeals.length > 0) {
                 for (let meal of newMeals) {
-                    const data = await fetch("https://whatsforsupperapi.vercel.app/mealplan/meal/add", {
+                    const data = await fetch("https://whatsforsupperapi.herokuapp.com/mealplan/meal/add", {
                         method: "POST",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -274,7 +274,7 @@ export default function MealplanForm(props) {
                 for (let meal of updatedMeals) {
                     for (let ingredient of meal.recipe.ingredients) {
                         for (let shoppingingredient of ingredient.shoppingingredients.filter(shoppingingredient => shoppingingredient.shoppinglist_id === props.data.shoppinglist.id)) {
-                            const data = await fetch(`https://whatsforsupperapi.vercel.app/shoppingingredient/update/${shoppingingredient.id}`, {
+                            const data = await fetch(`https://whatsforsupperapi.herokuapp.com/shoppingingredient/update/${shoppingingredient.id}`, {
                                 method: "PUT",
                                 headers: { 
                                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -317,7 +317,7 @@ export default function MealplanForm(props) {
 
             if (deletedMeals.length > 0) {
                 for (let meal of deletedMeals) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/mealplan/meal/delete`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/mealplan/meal/delete`, {
                         method: "DELETE",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

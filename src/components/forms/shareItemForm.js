@@ -27,7 +27,7 @@ export default function ShareItemForm(props) {
         else {
             setLoading(true)
 
-            fetch(`https://whatsforsupperapi.vercel.app/${props.itemType}/share`, {
+            fetch(`https://whatsforsupperapi.herokuapp.com/${props.itemType}/share`, {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

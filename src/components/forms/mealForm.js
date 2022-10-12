@@ -87,7 +87,7 @@ export default function MealForm(props) {
             }
 
             let newData = {}
-            let data = await fetch("https://whatsforsupperapi.vercel.app/meal/add", {
+            let data = await fetch("https://whatsforsupperapi.herokuapp.com/meal/add", {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -133,7 +133,7 @@ export default function MealForm(props) {
             const existingCategories = user.categories.filter(category => formmattedCategories.includes(category.name))
             const categoryData = [...existingCategories]
             if (newCategories.length > 0) {
-                data = await fetch("https://whatsforsupperapi.vercel.app/category/add/multiple", {
+                data = await fetch("https://whatsforsupperapi.herokuapp.com/category/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -175,7 +175,7 @@ export default function MealForm(props) {
             }
 
             if (categoryData.length > 0) {
-                data = await fetch("https://whatsforsupperapi.vercel.app/category/attach/multiple", {
+                data = await fetch("https://whatsforsupperapi.herokuapp.com/category/attach/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -262,7 +262,7 @@ export default function MealForm(props) {
             }
 
             let newData = {}
-            let data = await fetch(`https://whatsforsupperapi.vercel.app/meal/update/${props.meal.id}`, {
+            let data = await fetch(`https://whatsforsupperapi.herokuapp.com/meal/update/${props.meal.id}`, {
                 method: "PUT",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -308,7 +308,7 @@ export default function MealForm(props) {
             const removedCategories = props.meal.categories.filter(category => !categories.includes(category.name))
             const categoryData = [...existingCategories]
             if (newCategories.length > 0) {
-                data = await fetch("https://whatsforsupperapi.vercel.app/category/add/multiple", {
+                data = await fetch("https://whatsforsupperapi.herokuapp.com/category/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -350,7 +350,7 @@ export default function MealForm(props) {
             }
 
             if (categoryData.length > 0) {
-                data = await fetch("https://whatsforsupperapi.vercel.app/category/attach/multiple", {
+                data = await fetch("https://whatsforsupperapi.herokuapp.com/category/attach/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -391,7 +391,7 @@ export default function MealForm(props) {
             }
 
             if (removedCategories.length > 0) {
-                data = await fetch("https://whatsforsupperapi.vercel.app/category/unattach/multiple", {
+                data = await fetch("https://whatsforsupperapi.herokuapp.com/category/unattach/multiple", {
                     method: "DELETE",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

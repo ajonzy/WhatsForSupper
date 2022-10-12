@@ -43,7 +43,7 @@ export default function Shoppinglist(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.vercel.app/shoppinglist/delete/${shoppinglist.id}`, { 
+            fetch(`https://whatsforsupperapi.herokuapp.com/shoppinglist/delete/${shoppinglist.id}`, { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })
@@ -76,7 +76,7 @@ export default function Shoppinglist(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.vercel.app/shoppinglist/unshare/${shoppinglist.id}/${user.id}`, { 
+            fetch(`https://whatsforsupperapi.herokuapp.com/shoppinglist/unshare/${shoppinglist.id}/${user.id}`, { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })
@@ -105,7 +105,7 @@ export default function Shoppinglist(props) {
     }
 
     const handleObtain = ingredient => {
-        fetch(`https://whatsforsupperapi.vercel.app/shoppingingredient/update/${ingredient.id}`, {
+        fetch(`https://whatsforsupperapi.herokuapp.com/shoppingingredient/update/${ingredient.id}`, {
             method: "PUT",
             headers: { 
                 authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

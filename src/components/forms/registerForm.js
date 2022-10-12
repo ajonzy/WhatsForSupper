@@ -30,7 +30,7 @@ export default function RegisterForm(props) {
         else {
             setLoading(true)
 
-            fetch("https://whatsforsupperapi.vercel.app/user/add", {
+            fetch("https://whatsforsupperapi.herokuapp.com/user/add", {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -100,7 +100,7 @@ export default function RegisterForm(props) {
                 }
             }
 
-            fetch(`https://whatsforsupperapi.vercel.app/user/update/${user.id}`, {
+            fetch(`https://whatsforsupperapi.herokuapp.com/user/update/${user.id}`, {
                 method: "PUT",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

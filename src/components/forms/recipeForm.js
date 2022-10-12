@@ -115,7 +115,7 @@ export default function RecipeForm(props) {
 
             let stepsectionsData = []
             if (stepsections.length > 0) {
-                const data = await fetch("https://whatsforsupperapi.vercel.app/stepsection/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/stepsection/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -172,7 +172,7 @@ export default function RecipeForm(props) {
                     }))
                 })
 
-                const data = await fetch("https://whatsforsupperapi.vercel.app/step/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/step/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -216,7 +216,7 @@ export default function RecipeForm(props) {
 
             let ingredientsectionsData = []
             if (ingredientsections.length > 0) {
-                const data = await fetch("https://whatsforsupperapi.vercel.app/ingredientsection/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/ingredientsection/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -265,7 +265,7 @@ export default function RecipeForm(props) {
                     formmattedIngredients.push(...ingredients.filter(ingredient => ingredient.ingredientsection === index).map(ingredient => ({ ...ingredient, ingredientsection_id: ingredientsectionData.id })))
                 })
 
-                const data = await fetch("https://whatsforsupperapi.vercel.app/ingredient/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/ingredient/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -355,7 +355,7 @@ export default function RecipeForm(props) {
             const deletedStepsections = props.meal.recipe.stepsections.filter(existingStepsection => stepsections.filter(stepsection => stepsection.id === existingStepsection.id).length === 0)
             let stepsectionsData = [...nonUpdatedStepsections]
             if (newStepsections.length > 0) {
-                const data = await fetch("https://whatsforsupperapi.vercel.app/stepsection/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/stepsection/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -397,7 +397,7 @@ export default function RecipeForm(props) {
 
             if (updatedStepsections.length > 0) {
                 for (let stepsection of updatedStepsections) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/stepsection/update/${stepsection.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/stepsection/update/${stepsection.id}`, {
                         method: "PUT",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -437,7 +437,7 @@ export default function RecipeForm(props) {
 
             if (deletedStepsections.length > 0) {
                 for (let stepsection of deletedStepsections) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/stepsection/delete/${stepsection.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/stepsection/delete/${stepsection.id}`, {
                         method: "DELETE",
                         headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
                     })
@@ -497,7 +497,7 @@ export default function RecipeForm(props) {
                     }))
                 })
 
-                const data = await fetch("https://whatsforsupperapi.vercel.app/step/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/step/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -541,7 +541,7 @@ export default function RecipeForm(props) {
 
             if (updatedSteps.length > 0) {
                 for (let step of updatedSteps) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/step/update/${step.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/step/update/${step.id}`, {
                         method: "PUT",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -582,7 +582,7 @@ export default function RecipeForm(props) {
 
             if (deletedSteps.length > 0) {
                 for (let step of deletedSteps) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/step/delete/${step.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/step/delete/${step.id}`, {
                         method: "DELETE",
                         headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
                     })
@@ -612,7 +612,7 @@ export default function RecipeForm(props) {
             const deletedIngredientsections = props.meal.recipe.ingredientsections.filter(existingIngredientsection => ingredientsections.filter(ingredientsection => ingredientsection.id === existingIngredientsection.id).length === 0)
             let ingredientsectionsData = [...nonUpdatedIngredientsections]
             if (newIngredientsections.length > 0) {
-                const data = await fetch("https://whatsforsupperapi.vercel.app/ingredientsection/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/ingredientsection/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -654,7 +654,7 @@ export default function RecipeForm(props) {
 
             if (updatedIngredientsections.length > 0) {
                 for (let ingredientsection of updatedIngredientsections) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/ingredientsection/update/${ingredientsection.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/ingredientsection/update/${ingredientsection.id}`, {
                         method: "PUT",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -694,7 +694,7 @@ export default function RecipeForm(props) {
 
             if (deletedIngredientsections.length > 0) {
                 for (let ingredientsection of deletedIngredientsections) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/ingredientsection/delete/${ingredientsection.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/ingredientsection/delete/${ingredientsection.id}`, {
                         method: "DELETE",
                         headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
                     })
@@ -731,7 +731,7 @@ export default function RecipeForm(props) {
             const deletedIngredients = props.meal.recipe.ingredients.filter(existingIngredient => formmattedIngredients.filter(ingredient => ingredient.id === existingIngredient.id).length === 0).filter(ingredient => !deletedIngredientsections.map(ingredientsection => ingredientsection.id).includes(ingredient.ingredientsection_id))
             let ingredientsData = [...nonUpdatedIngredients]
             if (newIngredients.length > 0) {
-                const data = await fetch("https://whatsforsupperapi.vercel.app/ingredient/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/ingredient/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -777,7 +777,7 @@ export default function RecipeForm(props) {
 
             if (updatedIngredients.length > 0) {
                 for (let ingredient of updatedIngredients) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/ingredient/update/${ingredient.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/ingredient/update/${ingredient.id}`, {
                         method: "PUT",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -821,7 +821,7 @@ export default function RecipeForm(props) {
 
             if (deletedIngredients.length > 0) {
                 for (let ingredient of deletedIngredients) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/ingredient/delete/${ingredient.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/ingredient/delete/${ingredient.id}`, {
                         method: "DELETE",
                         headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
                     })

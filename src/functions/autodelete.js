@@ -23,7 +23,7 @@ export default function autodelete(type, user) {
     })
 
     expiredData.forEach(item => {
-        fetch(`https://whatsforsupperapi.vercel.app/${type}/delete/${item.id}`, { 
+        fetch(`https://whatsforsupperapi.herokuapp.com/${type}/delete/${item.id}`, { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
         })

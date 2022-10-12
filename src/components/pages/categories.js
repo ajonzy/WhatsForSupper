@@ -31,7 +31,7 @@ export default function Categories(props) {
                 setEditId(-1)
             }
             else {
-                fetch(`https://whatsforsupperapi.vercel.app/category/update/${category.id}`, {
+                fetch(`https://whatsforsupperapi.herokuapp.com/category/update/${category.id}`, {
                     method: "PUT",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -77,7 +77,7 @@ export default function Categories(props) {
 
     const handleDelete = category => {
         if (confirm && confirmId === category.id) {
-            fetch(`https://whatsforsupperapi.vercel.app/category/delete/${category.id}`, { 
+            fetch(`https://whatsforsupperapi.herokuapp.com/category/delete/${category.id}`, { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })

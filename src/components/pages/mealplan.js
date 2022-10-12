@@ -21,7 +21,7 @@ export default function Mealplan(props) {
 
             if (mealplan.sub_shoppinglist.id) {
                 let newData = {}
-                const data = await fetch("https://whatsforsupperapi.vercel.app/shoppinglist/add", { 
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/shoppinglist/add", { 
                     method: "POST" ,
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -58,7 +58,7 @@ export default function Mealplan(props) {
 
                 let shoppingingredientsData = []
                 if (mealplan.sub_shoppinglist.shoppingingredients.length > 0) {
-                    const data = await fetch("https://whatsforsupperapi.vercel.app/shoppingingredient/add/multiple", {
+                    const data = await fetch("https://whatsforsupperapi.herokuapp.com/shoppingingredient/add/multiple", {
                         method: "POST",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -99,7 +99,7 @@ export default function Mealplan(props) {
                 user.shoppinglists.push(newData)
             }
 
-            const data = await fetch(`https://whatsforsupperapi.vercel.app/mealplan/delete/${mealplan.id}`, { 
+            const data = await fetch(`https://whatsforsupperapi.herokuapp.com/mealplan/delete/${mealplan.id}`, { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })
@@ -135,7 +135,7 @@ export default function Mealplan(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.vercel.app/mealplan/unshare/${mealplan.id}/${user.id}`, { 
+            fetch(`https://whatsforsupperapi.herokuapp.com/mealplan/unshare/${mealplan.id}/${user.id}`, { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })

@@ -69,7 +69,7 @@ export default function ShoppinglistForm(props) {
             setLoading(true)
 
             let newData = []
-            let data = await fetch("https://whatsforsupperapi.vercel.app/shoppinglist/add", {
+            let data = await fetch("https://whatsforsupperapi.herokuapp.com/shoppinglist/add", {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -111,7 +111,7 @@ export default function ShoppinglistForm(props) {
 
             let ingredientsData = []
             if (ingredients.length > 0) {
-                const data = await fetch("https://whatsforsupperapi.vercel.app/shoppingingredient/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/shoppingingredient/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -171,7 +171,7 @@ export default function ShoppinglistForm(props) {
             setLoading(true)
 
             let newData = []
-            let data = await fetch(`https://whatsforsupperapi.vercel.app/shoppinglist/update/${props.shoppinglist.id}`, {
+            let data = await fetch(`https://whatsforsupperapi.herokuapp.com/shoppinglist/update/${props.shoppinglist.id}`, {
                 method: "PUT",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -229,7 +229,7 @@ export default function ShoppinglistForm(props) {
             const updatedMealplanIngredients = existingMealplanIngredients.filter(ingredient => props.shoppinglist.shoppingingredients.filter(ingredient => ingredient.ingredient_id).filter(existingIngredient => existingIngredient.id === ingredient.id)[0].multiplier !== ingredient.multiplier)
             if (updatedMealplanIngredients.length > 0) {
                 for (let ingredient of updatedMealplanIngredients) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/shoppingingredient/update/${ingredient.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/shoppingingredient/update/${ingredient.id}`, {
                         method: "PUT",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -271,7 +271,7 @@ export default function ShoppinglistForm(props) {
 
             let shoppinglist = props.shoppinglist.mealplan_id ? user.mealplans.filter(mealplan => mealplan.id === props.shoppinglist.mealplan_id)[0].sub_shoppinglist : props.shoppinglist
             if (Object.keys(shoppinglist).length === 0) {
-                const data = await fetch("https://whatsforsupperapi.vercel.app/shoppinglist/add", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/shoppinglist/add", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -321,7 +321,7 @@ export default function ShoppinglistForm(props) {
             const deletedIngredients = shoppinglist.shoppingingredients.filter(existingIngredient => ingredients.filter(ingredient => ingredient.id === existingIngredient.id).length === 0)
             let ingredientsData = [...nonUpdatedIngredients]
             if (newIngredients.length > 0) {
-                const data = await fetch("https://whatsforsupperapi.vercel.app/shoppingingredient/add/multiple", {
+                const data = await fetch("https://whatsforsupperapi.herokuapp.com/shoppingingredient/add/multiple", {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -366,7 +366,7 @@ export default function ShoppinglistForm(props) {
 
             if (updatedIngredients.length > 0) {
                 for (let ingredient of updatedIngredients) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/shoppingingredient/update/${ingredient.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/shoppingingredient/update/${ingredient.id}`, {
                         method: "PUT",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -410,7 +410,7 @@ export default function ShoppinglistForm(props) {
 
             if (deletedIngredients.length > 0) {
                 for (let ingredient of deletedIngredients) {
-                    const data = await fetch(`https://whatsforsupperapi.vercel.app/shoppingingredient/delete/${ingredient.id}`, {
+                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/shoppingingredient/delete/${ingredient.id}`, {
                         method: "DELETE",
                         headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
                     })
@@ -435,7 +435,7 @@ export default function ShoppinglistForm(props) {
 
             shoppinglist.shoppingingredients = ingredientsData
             if (shoppinglist.is_sublist && ingredientsData.length === 0) {
-                const data = await fetch(`https://whatsforsupperapi.vercel.app/shoppinglist/delete/${shoppinglist.id}`, {
+                const data = await fetch(`https://whatsforsupperapi.herokuapp.com/shoppinglist/delete/${shoppinglist.id}`, {
                     method: "DELETE",
                     headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
                 })

@@ -18,7 +18,7 @@ export default function AddMealplan(props) {
     const handleSaveOutline = async (name, number, rules) => {
         let newData = {}
 
-        let responseData = await fetch("https://whatsforsupperapi.vercel.app/mealplanoutline/add", {
+        let responseData = await fetch("https://whatsforsupperapi.herokuapp.com/mealplanoutline/add", {
             method: "POST",
             headers: { 
                 authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -52,7 +52,7 @@ export default function AddMealplan(props) {
         }
 
         for (let rule of rules) {
-            responseData = await fetch("https://whatsforsupperapi.vercel.app/rule/add", {
+            responseData = await fetch("https://whatsforsupperapi.herokuapp.com/rule/add", {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

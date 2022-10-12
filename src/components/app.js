@@ -76,7 +76,7 @@ class App extends Component {
         loading: true
       })
 
-      fetch(`https://whatsforsupperapi.vercel.app/user/logout/single/${token}`, { 
+      fetch(`https://whatsforsupperapi.herokuapp.com/user/logout/single/${token}`, { 
         method: "DELETE",
         headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") } 
       })
@@ -108,7 +108,7 @@ class App extends Component {
   componentDidMount() {
     const token = Cookies.get("token")
     if (token) {
-      fetch(`https://whatsforsupperapi.vercel.app/user/get/token/${token}`, { 
+      fetch(`https://whatsforsupperapi.herokuapp.com/user/get/token/${token}`, { 
         headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") } 
       })
       .then(response => response.json())
