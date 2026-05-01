@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import ConfirmLoadingError from '../utils/confirmLoadingError'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function Mealplan(props) {
     const { user, setUser } = useContext(UserContext)
@@ -21,7 +22,7 @@ export default function Mealplan(props) {
 
             if (mealplan.sub_shoppinglist.id) {
                 let newData = {}
-                const data = await fetch("https://whatsforsupperapi.herokuapp.com/shoppinglist/add", { 
+                const data = await fetch(apiUrl("/shoppinglist/add"), { 
                     method: "POST" ,
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -58,7 +59,7 @@ export default function Mealplan(props) {
 
                 let shoppingingredientsData = []
                 if (mealplan.sub_shoppinglist.shoppingingredients.length > 0) {
-                    const data = await fetch("https://whatsforsupperapi.herokuapp.com/shoppingingredient/add/multiple", {
+                    const data = await fetch(apiUrl("/shoppingingredient/add/multiple"), {
                         method: "POST",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -99,7 +100,7 @@ export default function Mealplan(props) {
                 user.shoppinglists.push(newData)
             }
 
-            const data = await fetch(`https://whatsforsupperapi.herokuapp.com/mealplan/delete/${mealplan.id}`, { 
+            const data = await fetch(apiUrl(`/mealplan/delete/${mealplan.id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })
@@ -135,7 +136,7 @@ export default function Mealplan(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.herokuapp.com/mealplan/unshare/${mealplan.id}/${user.id}`, { 
+            fetch(apiUrl(`/mealplan/unshare/${mealplan.id}/${user.id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })

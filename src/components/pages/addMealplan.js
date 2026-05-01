@@ -7,6 +7,7 @@ import { UserContext } from '../app'
 
 import generateMeals from '../../functions/generateMeals'
 import titleize from '../../functions/titleize'
+import { apiUrl } from "../../config/api";
 
 export default function AddMealplan(props) {
     const { user, setUser } = useContext(UserContext)
@@ -18,7 +19,7 @@ export default function AddMealplan(props) {
     const handleSaveOutline = async (name, number, rules) => {
         let newData = {}
 
-        let responseData = await fetch("https://whatsforsupperapi.herokuapp.com/mealplanoutline/add", {
+        let responseData = await fetch(apiUrl("/mealplanoutline/add"), {
             method: "POST",
             headers: { 
                 authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -52,7 +53,7 @@ export default function AddMealplan(props) {
         }
 
         for (let rule of rules) {
-            responseData = await fetch("https://whatsforsupperapi.herokuapp.com/rule/add", {
+            responseData = await fetch(apiUrl("/rule/add"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

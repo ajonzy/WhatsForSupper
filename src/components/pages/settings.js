@@ -5,6 +5,7 @@ import { faSquare, faSquareCheck } from '@fortawesome/free-regular-svg-icons'
 import RegisterForm from '../forms/registerForm'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function Settings(props) {
     const { user, setUser, logoutUser } = useContext(UserContext)
@@ -25,7 +26,7 @@ export default function Settings(props) {
     const [allowNonfriendSharing, setAllowNonfriendSharing] = useState(user.settings.allow_nonfriend_sharing)
 
     const handleSettingsChange = (setting, newValue) => {
-        fetch(`https://whatsforsupperapi.herokuapp.com/settings/update/${user.settings.id}`, { 
+        fetch(apiUrl(`/settings/update/${user.settings.id}`), { 
             method: "PUT",
             headers: { 
                 authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -66,7 +67,7 @@ export default function Settings(props) {
     }
 
     const handleLogoutAll = () => {
-        fetch(`https://whatsforsupperapi.herokuapp.com/user/logout/all/${user.id}`, { 
+        fetch(apiUrl(`/user/logout/all/${user.id}`), { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
         })

@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import LoadingError from '../utils/loadingError'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function FriendForm(props) {
     const { user } = useContext(UserContext)
@@ -24,7 +25,7 @@ export default function FriendForm(props) {
         else {
             setLoading(true)
 
-            fetch("https://whatsforsupperapi.herokuapp.com/user/friend/request", {
+            fetch(apiUrl("/user/friend/request"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

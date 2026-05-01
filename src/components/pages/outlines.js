@@ -6,6 +6,7 @@ import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import ConfirmLoadingError from '../utils/confirmLoadingError'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function Outlines(props) {
     const { user, setUser } = useContext(UserContext)
@@ -21,7 +22,7 @@ export default function Outlines(props) {
 
     const handleDelete = outline => {
         if (confirm && confirmId === outline.id) {
-            fetch(`https://whatsforsupperapi.herokuapp.com/mealplanoutline/delete/${outline.id}`, { 
+            fetch(apiUrl(`/mealplanoutline/delete/${outline.id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })

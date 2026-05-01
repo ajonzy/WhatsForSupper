@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import ConfirmLoadingError from '../utils/confirmLoadingError'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function Friend(props) {
     const { user, setUser } = useContext(UserContext)
@@ -16,7 +17,7 @@ export default function Friend(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.herokuapp.com/user/friend/delete/${user.id}/${friend.user_id}`, { 
+            fetch(apiUrl(`/user/friend/delete/${user.id}/${friend.user_id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })

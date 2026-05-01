@@ -6,6 +6,7 @@ import LoadingError from '../utils/loadingError'
 import { UserContext } from '../app'
 
 import titleize from '../../functions/titleize'
+import { apiUrl } from "../../config/api";
 
 export default function ShareItemForm(props) {
     const { user } = useContext(UserContext)
@@ -27,7 +28,7 @@ export default function ShareItemForm(props) {
         else {
             setLoading(true)
 
-            fetch(`https://whatsforsupperapi.herokuapp.com/${props.itemType}/share`, {
+            fetch(apiUrl(`/${props.itemType}/share`), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

@@ -1,3 +1,4 @@
+import { apiUrl } from "../config/api";
 export default function autodelete(type, user) {
     const number = type === "mealplan" ? user.settings.autodelete_mealplans_schedule_number : user.settings.autodelete_shoppinglists_schedule_number
     const unit = type === "mealplan" ? user.settings.autodelete_mealplans_schedule_unit : user.settings.autodelete_shoppinglists_schedule_unit
@@ -23,7 +24,7 @@ export default function autodelete(type, user) {
     })
 
     expiredData.forEach(item => {
-        fetch(`https://whatsforsupperapi.herokuapp.com/${type}/delete/${item.id}`, { 
+        fetch(apiUrl(`/${type}/delete/${item.id}`), { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
         })

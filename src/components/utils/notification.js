@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useSpring, animated, easings } from 'react-spring'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function Notification(props) {
     const { user, setUser } = useContext(UserContext)
@@ -9,7 +10,7 @@ export default function Notification(props) {
     const styleProps = useSpring({ to: { opacity: user.settings.allow_notifications ? 1 : 0, transform: "translateY(-0%)" }, from: { opacity: 0, transform: "translateY(-100%)" }, config: { duration: 200, easing: easings.easeInOutBounce }})
 
     const handleNotification = (notification, path) => {
-        fetch(`https://whatsforsupperapi.herokuapp.com/notification/delete/single/${notification.id}`, { 
+        fetch(apiUrl(`/notification/delete/single/${notification.id}`), { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
         })
@@ -22,7 +23,7 @@ export default function Notification(props) {
     }
 
     const handleNotifications = () => {
-        fetch(`https://whatsforsupperapi.herokuapp.com/notification/delete/all/${user.id}`, { 
+        fetch(apiUrl(`/notification/delete/all/${user.id}`), { 
             method: "DELETE",
             headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
         })

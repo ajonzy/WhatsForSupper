@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import LoadingError from '../utils/loadingError'
+import { apiUrl } from "../../config/api";
 
 export default function LoginForm(props) {
     const [username, setUsername] = useState("")
@@ -19,7 +20,7 @@ export default function LoginForm(props) {
         else {
             setLoading(true)
 
-            fetch("https://whatsforsupperapi.herokuapp.com/user/login", {
+            fetch(apiUrl("/user/login"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

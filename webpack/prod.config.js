@@ -1,3 +1,10 @@
+const crypto = require("crypto");
+const origCreateHash = crypto.createHash.bind(crypto);
+crypto.createHash = function patchCreateHash(algorithm) {
+  const a = typeof algorithm === "string" ? algorithm.toLowerCase() : algorithm;
+  return origCreateHash(a === "md4" ? "sha256" : algorithm);
+};
+
 const path = require("path");
 const webpackMerge = require("webpack-merge");
 const autoprefixer = require("autoprefixer");
@@ -5,7 +12,6 @@ const webpackCommon = require("./common.config");
 
 // webpack plugins
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const DefinePlugin = require("webpack/lib/DefinePlugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -90,11 +96,6 @@ module.exports = webpackMerge(webpackCommon, {
     new CleanWebpackPlugin(["dist"], {
       root: path.resolve(__dirname, ".."),
       exclude: ".gitignore"
-    }),
-    new DefinePlugin({
-      "process.env": {
-        NODE_ENV: '"production"'
-      }
     }),
     new ExtractTextPlugin("[name]-[chunkhash].min.css"),
     new UglifyJsPlugin({

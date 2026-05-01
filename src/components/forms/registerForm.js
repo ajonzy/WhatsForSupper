@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import LoadingError from '../utils/loadingError'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function RegisterForm(props) {
     const { user } = useContext(UserContext)
@@ -30,7 +31,7 @@ export default function RegisterForm(props) {
         else {
             setLoading(true)
 
-            fetch("https://whatsforsupperapi.herokuapp.com/user/add", {
+            fetch(apiUrl("/user/add"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -100,7 +101,7 @@ export default function RegisterForm(props) {
                 }
             }
 
-            fetch(`https://whatsforsupperapi.herokuapp.com/user/update/${user.id}`, {
+            fetch(apiUrl(`/user/update/${user.id}`), {
                 method: "PUT",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

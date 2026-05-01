@@ -1,7 +1,8 @@
 import { io } from "socket.io-client"
+import { API_BASE_URL } from "../config/api";
 
 export default function sockets(getUser, setUser) {
-    const socket = io("https://whatsforsupperapi.herokuapp.com/")
+    const socket = io(API_BASE_URL)
 
           socket.on("friend-request-update", data => {
             if (getUser().id === data.data.friend.id) {

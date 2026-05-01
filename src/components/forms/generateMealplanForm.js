@@ -8,6 +8,7 @@ import LoadingError from '../utils/loadingError'
 import titleize from '../../functions/titleize'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function GenerateMealplanForm(props) {
     const { user } = useContext(UserContext)
@@ -53,7 +54,7 @@ export default function GenerateMealplanForm(props) {
         else if (name !== props.mealplan.name) {
             setLoading(true)
 
-            fetch(`https://whatsforsupperapi.herokuapp.com/mealplan/update/${props.mealplan.id}`, {
+            fetch(apiUrl(`/mealplan/update/${props.mealplan.id}`), {
                 method: "PUT",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -103,7 +104,7 @@ export default function GenerateMealplanForm(props) {
 
             let newData = {}
 
-            let responseData = await fetch("https://whatsforsupperapi.herokuapp.com/mealplanoutline/add", {
+            let responseData = await fetch(apiUrl("/mealplanoutline/add"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -140,7 +141,7 @@ export default function GenerateMealplanForm(props) {
             }
     
             for (let rule of rules) {
-                responseData = await fetch("https://whatsforsupperapi.herokuapp.com/rule/add", {
+                responseData = await fetch(apiUrl("/rule/add"), {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -198,7 +199,7 @@ export default function GenerateMealplanForm(props) {
             setLoading(true)
             let newData = {...props.data}
 
-            const data = await fetch(`https://whatsforsupperapi.herokuapp.com/mealplanoutline/update/${props.data.id}`, {
+            const data = await fetch(apiUrl(`/mealplanoutline/update/${props.data.id}`), {
                 method: "PUT",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -250,7 +251,7 @@ export default function GenerateMealplanForm(props) {
             const deletedRules = newData.rules.filter(existingRule => !rules.map(rule => rule.id).includes(existingRule.id))
             if (newRules.length > 0) {
                 for (let rule of newRules) {
-                    const data = await fetch("https://whatsforsupperapi.herokuapp.com/rule/add", {
+                    const data = await fetch(apiUrl("/rule/add"), {
                         method: "POST",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -296,7 +297,7 @@ export default function GenerateMealplanForm(props) {
             if (updatedRules.length > 0) {
                 for (let rule of updatedRules) {
                     console.log(rule)
-                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/rule/update/${rule.id}`, {
+                    const data = await fetch(apiUrl(`/rule/update/${rule.id}`), {
                         method: "PUT",
                         headers: { 
                             authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -340,7 +341,7 @@ export default function GenerateMealplanForm(props) {
 
             if (deletedRules.length > 0) {
                 for (let rule of deletedRules) {
-                    const data = await fetch(`https://whatsforsupperapi.herokuapp.com/rule/delete/${rule.id}`, { 
+                    const data = await fetch(apiUrl(`/rule/delete/${rule.id}`), { 
                         method: "DELETE" ,
                         headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
                     })
@@ -380,7 +381,7 @@ export default function GenerateMealplanForm(props) {
 
         if (newRules.length > 0) {
             newRules.forEach(rule => {
-                fetch("https://whatsforsupperapi.herokuapp.com/rule/add", {
+                fetch(apiUrl("/rule/add"), {
                     method: "POST",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -408,7 +409,7 @@ export default function GenerateMealplanForm(props) {
 
         if (updatedRules.length > 0) {
             updatedRules.forEach(rule => {
-                fetch(`https://whatsforsupperapi.herokuapp.com/rule/update/${rule.id}`, {
+                fetch(apiUrl(`/rule/update/${rule.id}`), {
                     method: "PUT",
                     headers: { 
                         authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -435,7 +436,7 @@ export default function GenerateMealplanForm(props) {
 
         if (deletedRules.length > 0) {
             deletedRules.forEach(rule => {
-                fetch(`https://whatsforsupperapi.herokuapp.com/rule/delete/${rule.id}`, { 
+                fetch(apiUrl(`/rule/delete/${rule.id}`), { 
                     method: "DELETE" ,
                     headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
                 })

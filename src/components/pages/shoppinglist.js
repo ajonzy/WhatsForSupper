@@ -6,6 +6,7 @@ import { faCircle, faCircleCheck } from '@fortawesome/free-regular-svg-icons'
 import ConfirmLoadingError from '../utils/confirmLoadingError'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function Shoppinglist(props) {
     const { user, setUser } = useContext(UserContext)
@@ -43,7 +44,7 @@ export default function Shoppinglist(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.herokuapp.com/shoppinglist/delete/${shoppinglist.id}`, { 
+            fetch(apiUrl(`/shoppinglist/delete/${shoppinglist.id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })
@@ -76,7 +77,7 @@ export default function Shoppinglist(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.herokuapp.com/shoppinglist/unshare/${shoppinglist.id}/${user.id}`, { 
+            fetch(apiUrl(`/shoppinglist/unshare/${shoppinglist.id}/${user.id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })
@@ -105,7 +106,7 @@ export default function Shoppinglist(props) {
     }
 
     const handleObtain = ingredient => {
-        fetch(`https://whatsforsupperapi.herokuapp.com/shoppingingredient/update/${ingredient.id}`, {
+        fetch(apiUrl(`/shoppingingredient/update/${ingredient.id}`), {
             method: "PUT",
             headers: { 
                 authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),

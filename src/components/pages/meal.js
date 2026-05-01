@@ -4,6 +4,7 @@ import ConfirmLoadingError from '../utils/confirmLoadingError'
 import LoadingError from '../utils/loadingError'
 
 import { UserContext } from '../app'
+import { apiUrl } from "../../config/api";
 
 export default function Meal(props) {
     const { user, setUser } = useContext(UserContext)
@@ -86,7 +87,7 @@ export default function Meal(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.herokuapp.com/meal/delete/${meal.id}`, { 
+            fetch(apiUrl(`/meal/delete/${meal.id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })
@@ -124,7 +125,7 @@ export default function Meal(props) {
         setCopyLoading(true)
 
         let newData = {}
-        let data = await fetch("https://whatsforsupperapi.herokuapp.com/meal/add", {
+        let data = await fetch(apiUrl("/meal/add"), {
             method: "POST",
             headers: { 
                 authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -166,7 +167,7 @@ export default function Meal(props) {
         }
 
         if (meal.recipe.stepsections.length > 0) {
-            const data = await fetch("https://whatsforsupperapi.herokuapp.com/stepsection/add/multiple", {
+            const data = await fetch(apiUrl("/stepsection/add/multiple"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -207,7 +208,7 @@ export default function Meal(props) {
         }
 
         if (meal.recipe.steps.length > 0) {
-            const data = await fetch("https://whatsforsupperapi.herokuapp.com/step/add/multiple", {
+            const data = await fetch(apiUrl("/step/add/multiple"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -251,7 +252,7 @@ export default function Meal(props) {
 
         let ingredientsectionsData = []
         if (meal.recipe.ingredientsections.length > 0) {
-            const data = await fetch("https://whatsforsupperapi.herokuapp.com/ingredientsection/add/multiple", {
+            const data = await fetch(apiUrl("/ingredientsection/add/multiple"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -300,7 +301,7 @@ export default function Meal(props) {
                 formmattedIngredients.push(...meal.recipe.ingredients.filter(ingredient => ingredient.ingredientsection_id === ingredientsection.id).map(ingredient => ({ ...ingredient, ingredientsection_id: ingredientsectionData.id })))
             })
 
-            const data = await fetch("https://whatsforsupperapi.herokuapp.com/ingredient/add/multiple", {
+            const data = await fetch(apiUrl("/ingredient/add/multiple"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
@@ -347,7 +348,7 @@ export default function Meal(props) {
 
         let unshareData = {}
         if (shared_meal) {
-            data = await fetch(`https://whatsforsupperapi.herokuapp.com/meal/unshare/${meal.id}/${user.id}`, { 
+            data = await fetch(apiUrl(`/meal/unshare/${meal.id}/${user.id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })
@@ -385,7 +386,7 @@ export default function Meal(props) {
 
         if (confirm) {
             setDeleteLoading(true)
-            fetch(`https://whatsforsupperapi.herokuapp.com/meal/unshare/${meal.id}/${user.id}`, { 
+            fetch(apiUrl(`/meal/unshare/${meal.id}/${user.id}`), { 
                 method: "DELETE",
                 headers: { authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64") }
             })

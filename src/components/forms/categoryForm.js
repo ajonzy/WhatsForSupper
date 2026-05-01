@@ -5,6 +5,7 @@ import { UserContext } from '../app'
 import LoadingError from '../utils/loadingError'
 
 import titleize from '../../functions/titleize'
+import { apiUrl } from "../../config/api";
 
 export default function CategoryForm(props) {
     const { user, setUser } = useContext(UserContext)
@@ -23,7 +24,7 @@ export default function CategoryForm(props) {
         else {
             setLoading(true)
 
-            fetch("https://whatsforsupperapi.herokuapp.com/category/add", {
+            fetch(apiUrl("/category/add"), {
                 method: "POST",
                 headers: { 
                     authorization: "Basic " + Buffer.from(process.env.AUTH_USERNAME + ":" + process.env.AUTH_PASSWORD).toString("base64"),
